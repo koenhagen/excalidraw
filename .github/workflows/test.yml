@@ -11,7 +11,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 18.x
+      - run: yarn install
       - name: Install and test
-        run: |
-          yarn install
-          yarn test:app
+        uses: koenhagen/measure-energy-action@v0.33
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: yarn test:app
+          count: 1
